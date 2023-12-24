@@ -16,6 +16,25 @@ var imagesThumb = new Swiper(".imagesThumb", {
   });
   // End Slider Tour Detail
 
+
+// Thông báo thêm vào giỏ hàng thành công
+const alertAddCartSuccess = () => {
+  const elementAlert = document.querySelector("[alert-add-cart-success]");
+
+  elementAlert.classList.remove("alert-hidden");
+
+  setTimeout(() => {
+    elementAlert.classList.add("alert-hidden");
+  }, 3000);
+
+  const closeAlert = elementAlert.querySelector("[close-alert]");
+  closeAlert.addEventListener("click", () => {
+    elementAlert.classList.add("alert-hidden");
+  });
+}
+// Hết Thông báo thêm vào giỏ hàng thành công
+
+
   
 // Carts
 
@@ -51,8 +70,10 @@ if(formAddToCart) {
         cart[isExistTour].quantity = cart[isExistTour].quantity + quantity;
       }
 
-      console.log(cart);
+      // console.log(cart);
       localStorage.setItem("cart", JSON.stringify(cart));
+    
+      alertAddCartSuccess();
     }
   });
 }
