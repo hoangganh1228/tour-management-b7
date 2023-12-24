@@ -3,13 +3,15 @@ import dotenv from "dotenv";
 // import sequelize from "./config/database";
 import clientRoutes from "./routes/client/index.route";
 import moment from "moment";
-
+import bodyParser from "body-parser";
 dotenv.config();
 
 // sequelize;
 
 const app: Express = express();
 const port: number | string = process.env.PORT || 3000;
+
+app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
