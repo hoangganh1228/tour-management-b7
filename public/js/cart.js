@@ -47,7 +47,10 @@ const drawListTour = () => {
     const totalPrice = data.tours.reduce((sum, item) => sum + item.total, 0);
     const elementTotalPrice = document.querySelector("[total-price]");
     elementTotalPrice.innerHTML = totalPrice.toLocaleString();
+    
     deleteItemInCart();
+    
+    updateQuantityInCart();
     //Hết Tính tổng đơn hàng
   })
 }
@@ -72,6 +75,27 @@ const deleteItemInCart = () => {
   });
 }
 // Hết Xóa sản phẩm trong giỏ hàng
+
+// Cập nhật sản phẩm trong giỏ hàng
+const updateQuantityInCart = () => {
+  const listInputUpdate = document.querySelectorAll("[list-tour] input[item-id]");
+  listInputUpdate.forEach(input => {
+    input.addEventListener("change", () => {
+      const tourId = input.getAttribute("item-id");
+      const quantity = parseInt(input.value);
+
+      const cart = JSON.parse(localStorage.getItem("cart"));
+
+      const tourUpdate = cart.find(item => item.tourId == tourId);
+      tourUpdate.quantity = quantity;
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      drawListTour();
+    });
+  });
+}
+// Hết Cập nhật sản phẩm trong giỏ hàng
 
 // Lấy ra data và in ra giao diện
 drawListTour();
