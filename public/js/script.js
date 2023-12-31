@@ -37,10 +37,11 @@ const alertAddCartSuccess = () => {
 // Mini Cart
 const showMiniCart = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
-  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-  const miniCart = document.querySelector("[mini-cart]");
-  miniCart.innerHTML = totalQuantity;
+  if(cart) {
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const miniCart = document.querySelector("[mini-cart]");
+    miniCart.innerHTML = totalQuantity;
+  }
 }
 showMiniCart();
 // End Mini Cart
