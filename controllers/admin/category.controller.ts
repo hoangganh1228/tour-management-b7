@@ -11,7 +11,7 @@ export const index = async (req: Request, res: Response) => {
     raw: true
   });
 
-  console.log(categories);
+  // console.log(categories);
 
   res.render("admin/pages/categories/index", {
     pageTitle: "Danh mục tour",
